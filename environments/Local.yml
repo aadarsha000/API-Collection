@@ -1,0 +1,8 @@
+name: Local
+variables:
+  - name: API_URL
+    value: http://localhost:8000
+  - name: ACCESS_TOKEN
+    value: ""
+  - name: REFRESH_TOKEN
+    value: ""
