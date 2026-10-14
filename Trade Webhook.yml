@@ -1,0 +1,41 @@
+info:
+  name: Trade Webhook
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{API_URL}}/api/webhooks/tradingview/signal/"
+  body:
+    type: json
+    data: |-
+      {
+        "symbol": "SUSDT",
+        "exchange": "Binance",
+        "market": "futures",
+        "side": "buy",
+        "order_type": "limit",
+        "entry_price": 0.05516,
+        "sl": 0.05190,
+        "tps": [
+          {
+            "price": 0.05830,
+            "percent": 50
+          },
+          {
+            "price": 0.05940,
+            "percent": 30
+          },
+          {
+            "price": 0.06000,
+            "percent": 20
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,45 @@
+info:
+  name: Payment WEBHOOK
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{API_URL}}/api/subscriptions/nowpayments/ipn/"
+  body:
+    type: json
+    data: |
+      {
+          "fee": {
+              "currency": "usdtbsc",
+              "depositFee": 0.05051,
+              "serviceFee": 0.259748,
+              "withdrawalFee": 0
+          },
+          "order_id": null,
+          "invoice_id": null,
+          "pay_amount": 149.9863349,
+          "payment_id": 5053318562,
+          "updated_at": 1767350585665,
+          "pay_address": "0xBa56983C278cd8a4079173E4AC82618523E9F05A",
+          "purchase_id": "5053318562",
+          "pay_currency": "usdtbsc",
+          "price_amount": 150,
+          "actually_paid": 150,
+          "outcome_amount": 149.68974281,
+          "payin_extra_id": null,
+          "payment_status": "finished",
+          "price_currency": "usd",
+          "outcome_currency": "usdtbsc",
+          "order_description": "Thronex subscription deposit",
+          "parent_payment_id": null,
+          "payment_extra_ids": null,
+          "actually_paid_at_fiat": 0
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,74 @@
+info:
+  name: Verify email
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{API_URL}}/api/auth/verify-email-otp/"
+  body:
+    type: json
+    data: |-
+      {
+        "user_id": "c4ef4e7c-68c5-4101-bd71-ac1005d6f533",
+        "token": "803768"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: success
+    request:
+      url: "{{API_URL}}/api/auth/verify-email-otp/"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "user_id": "78f10edd-6a46-4a04-b3af-ba6d84ddebe8",
+            "token": "674563"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Mon, 28 Sep 2026 08:01:40 GMT
+        - name: server
+          value: WSGIServer/0.2 CPython/3.14.7
+        - name: content-type
+          value: application/json
+        - name: allow
+          value: POST, OPTIONS
+        - name: x-frame-options
+          value: DENY
+        - name: content-length
+          value: "498"
+        - name: x-content-type-options
+          value: nosniff
+        - name: referrer-policy
+          value: same-origin
+        - name: cross-origin-opener-policy
+          value: same-origin
+        - name: vary
+          value: origin
+      body:
+        type: json
+        data: |-
+          {
+            "success": true,
+            "message": "Email verified successfully. Proceed to Authenticator setup.",
+            "error": null,
+            "data": {
+              "preauth_token": "eyJ1aWQiOiI3OGYxMGVkZC02YTQ2LTRhMDQtYjNhZi1iYTZkODRkZGViZTgiLCJwd2YiOiJmS1BaSWR6SWZLdG5VTVU9In0:1xB6Iu:Yg1IBpKKYuazjzt5eUTWmDVTx0V6BlRWxz4jzLDnnw4",
+              "is_connected_to_authenticator": false,
+              "is_verified": true,
+              "provisioning_uri": "otpauth://totp/Thronex:TestUser01?secret=LSZXRU5TWZRU3ZYKTHZEAHMHN6Z2YJAA&issuer=Thronex",
+              "authenticator_key": "LSZXRU5TWZRU3ZYKTHZEAHMHN6Z2YJAA"
+            }
+          }

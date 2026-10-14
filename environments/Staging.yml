@@ -1,0 +1,6 @@
+name: Staging
+variables:
+  - name: API_URL
+    value: " https://thronex.btcbattle.io"
+  - name: ACCESS_TOKEN
+    value: ""

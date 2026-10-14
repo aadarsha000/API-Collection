@@ -1,0 +1,122 @@
+info:
+  name: Login
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{API_URL}}/api/auth/login/"
+  body:
+    type: json
+    data: |-
+      {
+        "username": "TestUser01",
+        "password": "Nep@12345"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Authenticator not conected
+    request:
+      url: "{{API_URL}}/api/auth/login/"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "username": "TestUser01",
+            "password": "Nep@12345"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Mon, 28 Sep 2026 08:16:10 GMT
+        - name: server
+          value: WSGIServer/0.2 CPython/3.14.7
+        - name: content-type
+          value: application/json
+        - name: allow
+          value: POST, OPTIONS
+        - name: x-frame-options
+          value: DENY
+        - name: content-length
+          value: "490"
+        - name: x-content-type-options
+          value: nosniff
+        - name: referrer-policy
+          value: same-origin
+        - name: cross-origin-opener-policy
+          value: same-origin
+        - name: vary
+          value: origin
+      body:
+        type: json
+        data: |-
+          {
+            "success": true,
+            "message": "Password accepted. Proceed with authenticator setup.",
+            "error": null,
+            "data": {
+              "preauth_token": "eyJ1aWQiOiI3OGYxMGVkZC02YTQ2LTRhMDQtYjNhZi1iYTZkODRkZGViZTgiLCJwd2YiOiJmS1BaSWR6SWZLdG5VTVU9In0:1xB6Ww:ld6HqzVZEViCuy02iblfaTBWYe3Ovxjb89pdJif-60M",
+              "is_connected_to_authenticator": false,
+              "is_verified": true,
+              "provisioning_uri": "otpauth://totp/Thronex:TestUser01?secret=LSZXRU5TWZRU3ZYKTHZEAHMHN6Z2YJAA&issuer=Thronex",
+              "authenticator_key": "LSZXRU5TWZRU3ZYKTHZEAHMHN6Z2YJAA"
+            }
+          }
+  - name: success
+    request:
+      url: "{{API_URL}}/api/auth/login/"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "username": "TestUser01",
+            "password": "Nep@12345"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Mon, 28 Sep 2026 08:18:14 GMT
+        - name: server
+          value: WSGIServer/0.2 CPython/3.14.7
+        - name: content-type
+          value: application/json
+        - name: allow
+          value: POST, OPTIONS
+        - name: x-frame-options
+          value: DENY
+        - name: content-length
+          value: "322"
+        - name: x-content-type-options
+          value: nosniff
+        - name: referrer-policy
+          value: same-origin
+        - name: cross-origin-opener-policy
+          value: same-origin
+        - name: vary
+          value: origin
+      body:
+        type: json
+        data: |-
+          {
+            "success": true,
+            "message": "Password accepted. Proceed with authenticator OTP.",
+            "error": null,
+            "data": {
+              "preauth_token": "eyJ1aWQiOiI3OGYxMGVkZC02YTQ2LTRhMDQtYjNhZi1iYTZkODRkZGViZTgiLCJwd2YiOiJmS1BaSWR6SWZLdG5VTVU9In0:1xB6Yw:wTvGt5vdF8pN45laXNVlt3YrqJ9UcR0wD7bG-88m9AI",
+              "is_connected_to_authenticator": true,
+              "is_verified": true
+            }
+          }

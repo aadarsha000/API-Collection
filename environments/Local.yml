@@ -3,6 +3,6 @@ variables:
   - name: API_URL
     value: http://localhost:8000
   - name: ACCESS_TOKEN
-    value: ""
+    value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzkxOTUzNDIyLCJpYXQiOjE3OTE5NTI1MjIsImp0aSI6ImJlOWFkNmI5OTdiMjRkOTI5YmFlZDc3NmU3NTY1NmIwIiwidXNlcl9pZCI6IjEifQ.rJBuqLRte0t2Ir5WFVJsXx0S9IOZZEaX6Rpr6aTSdBI
   - name: REFRESH_TOKEN
     value: ""

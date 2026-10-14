@@ -1,0 +1,84 @@
+info:
+  name: Register
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{API_URL}}/api/auth/register/"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "TestUser01",
+        "username": "TestUser01",
+        "email": "aq99godqy7@gmeenramy.com",
+        "password": "Nep@12345",
+        "password2": "Nep@12345",
+        "referred_by": "",
+        "country": "NP"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Register Success
+    request:
+      url: "{{API_URL}}/api/auth/register/"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "name": "TestUser01",
+            "username": "TestUser01",
+            "email": "l6aeqwuqpa@lnovic.com",
+            "password": "Nep@12345",
+            "password2": "Nep@12345",
+            "referred_by": "",
+            "country": "NP"
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: date
+          value: Mon, 28 Sep 2026 07:40:42 GMT
+        - name: server
+          value: WSGIServer/0.2 CPython/3.14.7
+        - name: content-type
+          value: application/json
+        - name: allow
+          value: POST, OPTIONS
+        - name: x-frame-options
+          value: DENY
+        - name: content-length
+          value: "282"
+        - name: x-content-type-options
+          value: nosniff
+        - name: referrer-policy
+          value: same-origin
+        - name: cross-origin-opener-policy
+          value: same-origin
+        - name: vary
+          value: origin
+      body:
+        type: json
+        data: |-
+          {
+            "success": true,
+            "message": "User registered successfully. Verification email has been sent to your email address.",
+            "error": null,
+            "data": {
+              "username": "TestUser01",
+              "user_id": "78f10edd-6a46-4a04-b3af-ba6d84ddebe8",
+              "is_connected_to_authenticator": false,
+              "is_verified": false,
+              "country": "NP"
+            }
+          }

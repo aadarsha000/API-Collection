@@ -1,0 +1,121 @@
+info:
+  name: Set up the authenticator
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{API_URL}}/api/auth/verify-authenticator-otp/"
+  body:
+    type: json
+    data: |-
+      {
+        "preauth_token": "eyJ1aWQiOiJjNGVmNGU3Yy02OGM1LTQxMDEtYmQ3MS1hYzEwMDVkNmY1MzMiLCJwd2YiOiI1VU4xdVowS01GYzZPUVE9In0:1xGeaK:2cFqWv-PvdabG4QkpLDd7IFmIrCkPMCy_sW_uSmlYLA",
+        "otp": "803768"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Pre Auth Token Expire
+    request:
+      url: "{{API_URL}}/api/auth/verify-authenticator-otp/"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "preauth_token": "eyJ1aWQiOiI3OGYxMGVkZC02YTQ2LTRhMDQtYjNhZi1iYTZkODRkZGViZTgiLCJwd2YiOiJmS1BaSWR6SWZLdG5VTVU9In0:1xB6Iu:Yg1IBpKKYuazjzt5eUTWmDVTx0V6BlRWxz4jzLDnnw4",
+            "otp": "123456"
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: date
+          value: Mon, 28 Sep 2026 08:12:11 GMT
+        - name: server
+          value: WSGIServer/0.2 CPython/3.14.7
+        - name: content-type
+          value: application/json
+        - name: allow
+          value: POST, OPTIONS
+        - name: x-frame-options
+          value: DENY
+        - name: content-length
+          value: "102"
+        - name: x-content-type-options
+          value: nosniff
+        - name: referrer-policy
+          value: same-origin
+        - name: cross-origin-opener-policy
+          value: same-origin
+        - name: vary
+          value: origin
+      body:
+        type: json
+        data: |-
+          {
+            "success": false,
+            "message": null,
+            "error": "This session has expired. Please sign in again.",
+            "data": null
+          }
+  - name: success
+    request:
+      url: "{{API_URL}}/api/auth/verify-authenticator-otp/"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "preauth_token": "eyJ1aWQiOiI3OGYxMGVkZC02YTQ2LTRhMDQtYjNhZi1iYTZkODRkZGViZTgiLCJwd2YiOiJmS1BaSWR6SWZLdG5VTVU9In0:1xB6Ww:ld6HqzVZEViCuy02iblfaTBWYe3Ovxjb89pdJif-60M",
+            "otp": "212575"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: date
+          value: Mon, 28 Sep 2026 08:17:39 GMT
+        - name: server
+          value: WSGIServer/0.2 CPython/3.14.7
+        - name: content-type
+          value: application/json
+        - name: allow
+          value: POST, OPTIONS
+        - name: x-frame-options
+          value: DENY
+        - name: content-length
+          value: "769"
+        - name: x-content-type-options
+          value: nosniff
+        - name: referrer-policy
+          value: same-origin
+        - name: cross-origin-opener-policy
+          value: same-origin
+        - name: vary
+          value: origin
+      body:
+        type: json
+        data: |-
+          {
+            "success": true,
+            "message": "User logged in successfully.",
+            "error": null,
+            "data": {
+              "user_id": "78f10edd-6a46-4a04-b3af-ba6d84ddebe8",
+              "username": "TestUser01",
+              "email": "l6aeqwuqpa@lnovic.com",
+              "role": "customer",
+              "date_joined": "2026-09-28T07:40:42.048749Z",
+              "subscription_status": "registered",
+              "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5MTE4ODI1OSwiaWF0IjoxNzkwNTgzNDU5LCJqdGkiOiI5YjZjNWVkNzBiMGM0ZjdmOGZhN2YwMzc2NDQ3YTlmNyIsInVzZXJfaWQiOiIyIn0.HFWmBlVD96pLS5IrDeIgJAw9Cjx08-J-gzWD4AZrun4",
+              "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzkwNTg0MzU5LCJpYXQiOjE3OTA1ODM0NTksImp0aSI6IjZjYjRkNDc2N2E0OTQ4M2FhZTk1NDMzNDJlY2Y2ZjgxIiwidXNlcl9pZCI6IjIifQ.kBgoACFkfhllVXJqhpucIdXtpRM9cdn8WJoD8V8rTWs"
+            }
+          }
